@@ -1,0 +1,8 @@
+# Ignore VS-Code Settings 
+.vscode/
+
+# Ignore Python Virtual Environment
+venv/
+
+# Ignore Python egg-info matadata
+ML_Pipeline_Project.egg-info/
