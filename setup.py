@@ -15,7 +15,7 @@ def get_requirements(filepath: str) -> List[str]:
     
     return requirements
 
-# Setting up the 
+# Setting up the package
 setup(
     name='ML_Pipeline_Project',
     version='0.0.1',
