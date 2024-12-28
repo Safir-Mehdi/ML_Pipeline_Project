@@ -1,6 +1,8 @@
 pandas==2.0
 Flask
 numpy
-scikit-learn
+scipy
 seaborn
+gain
+scikit-learn
 -e .
