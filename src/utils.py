@@ -1,10 +1,88 @@
 import math
+import os
+import sys
 import numpy as np
 import pandas as pd
 import seaborn as sns
-from matplotlib import pyplot as plt
+from src.exception import CustomException
+from src.logger import logging
 from typing import Union
+from scipy.stats.mstats import winsorize
+from sklearn.base import BaseEstimator, TransformerMixin
+from matplotlib import pyplot as plt
 
+class BaseTransformer(BaseEstimator, TransformerMixin):
+    def __init__(self):
+        self.feature_names = None
+
+    def set_feature_names(self, feature_names):
+        """
+        Set feature names when input is in numpy array format.
+        """
+        self.feature_names = feature_names
+
+    def get_feature_names_out(self, input_features: Union[str, list, tuple] = None):
+        """
+        Return the feature names after the transformation.
+        """
+        if input_features is not None:
+            return np.array(input_features, dtype='object')
+        elif self.feature_names is not None:
+            return np.array(self.feature_names, dtype='object')
+        else:
+            raise ValueError('Feature names are not available. Ensure the transformer is fitted and feature names are set.')
+
+class FrequencyEncoder(BaseTransformer):
+    def __init__(self, fillna = -1):
+        super().__init__()
+        # Initialize the FrequencyEncoder with an empty frequency map.
+        self.frequency_map = {}
+        self.fillna = fillna
+        # self.feature_names = None
+        
+    def fit(self, X, y=None):
+        if isinstance(X, np.ndarray):
+            X = pd.DataFrame(X, columns=self.feature_names)
+        elif not isinstance(X, pd.DataFrame):
+            raise ValueError('Input data must be a pandas DataFrame or numpy array.')
+        self.frequency_map = X.apply(lambda feature: feature.value_counts(normalize=True).to_dict(), axis=0)
+        return self
+    
+    def transform(self, X):
+        # return X.apply(lambda feature: feature.map(self.frequency_map[feature.name]))
+        if isinstance(X, np.ndarray):
+            X = pd.DataFrame(X, columns=self.feature_names)
+        elif not isinstance(X, pd.DataFrame):
+            raise ValueError('Input data must be a pandas DataFrame or numpy array.')
+        return X.apply(lambda feature: feature.map(self.frequency_map[feature.name]).fillna(self.fillna))
+           
+    
+    # This class is not compatible with the ColumnTransformer in Scikit-learn, So we need some changes in it
+class Winsorizer(BaseTransformer):
+    def __init__(self, feature_limits: dict = None):
+        super().__init__()
+        self.feature_limits = feature_limits
+        # self.feature_names = None
+    
+    def fit(self, X, y=None):
+        # print(self.feature_limits)
+        return self
+    
+    def transform(self, X):
+        if isinstance(X, np.ndarray):
+            X = pd.DataFrame(X, columns=self.feature_names)
+        elif not isinstance(X, pd.DataFrame):
+            raise ValueError('Input data must be a pandas DataFrame or numpy array.')
+        for feature, limit in self.feature_limits.items():
+            if feature in X.columns:
+                lower_percentile, upper_percentile = limit
+                # print(f'Winsorizing feature {feature} with limits: {lower_percentile} and {upper_percentile}')
+                X[feature] = winsorize(X[feature], limits=(lower_percentile, 1 - upper_percentile))
+            else:
+                raise ValueError(f'Feature {feature} not found in the input data.')
+        return X
+    
+    
 def plot_categorical_features(
     data,
     columns,
@@ -20,6 +98,7 @@ def plot_categorical_features(
     Plot the categorical features against the target column using the specified plot type.
     
     Parameters:
+    -----------
     - data: pd.DataFrame
         The dataset containing the features and target column.
         
@@ -45,6 +124,10 @@ def plot_categorical_features(
         To set the figure title.
         
     - **kwargs: Additional keyword arguments to pass to the seaborn plot function.
+    
+    Return:
+    -------
+    - None
     '''
     # Convert a single string into a list for compatibility 
     if isinstance(x_axis_label, str):
@@ -107,3 +190,40 @@ def plot_categorical_features(
     fig.suptitle(main_title.title(), fontsize=28, fontweight='normal')
     plt.tight_layout(rect=[0.0, 0.0, 1.0, 0.95])
     plt.show()
+
+def fetch_data(FILE_NAME: str, DIRECTORY_NAME: str) -> pd.DataFrame:
+    
+    '''
+    Fetching data from a CSV file and returning it as a pandas DataFrame.
+    
+    
+    Parameter:
+    
+    - FILE_NAME: Name of the CSV file.
+    
+    - DIRECTORY_NAME: Name of the directory where the CSV file is located.
+    '''
+    
+    # Setting the basepath
+    os.chdir('f:\\Data Science\\ML Projects\\ML Project by Engineering Wala Bhaiya\\ML_Pipeline_Project')
+    BASE_PATH = os.getcwd()
+
+    # Importing the dataset from the data source
+    try:
+        RAW_DATA_PATH = os.path.join(BASE_PATH, 'data', DIRECTORY_NAME)
+        income_data = pd.read_csv(os.path.join(RAW_DATA_PATH, FILE_NAME))
+    except Exception as e:
+        error = CustomException(error_message=e, error_detail=sys)
+        logging.info(error.error_message)
+        raise e
+
+    # Strpping all columns and values from the object data
+    if income_data.select_dtypes(include=['object']).shape[1] > 0:
+        income_data.columns = income_data.columns.str.strip()
+        temp_df = income_data.select_dtypes(include=['object']).apply(lambda x: x.str.strip())
+        income_data.drop(temp_df.columns, axis=1, inplace=True)
+        income_data = pd.concat([income_data, temp_df], axis=1)
+        del(temp_df)
+    
+    # Returning pandas DataFrame
+    return income_data

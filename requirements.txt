@@ -5,4 +5,7 @@ scipy
 seaborn
 gain
 scikit-learn
+category_encoders
+scipy
+requests
 -e .

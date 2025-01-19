@@ -1,0 +1,11 @@
+# Normalize Jupyter Notebook files to LF
+*.ipynb text eol=lf
+
+# Normalize Python files to LF
+*.py text eol=lf
+
+# Normalize text files to LF
+*.txt text eol=lf
+
+# Normalize CSV files to LF
+*.csv text eol=lf
