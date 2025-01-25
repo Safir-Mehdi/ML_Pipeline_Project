@@ -12,3 +12,9 @@ src/__pycache__
 
 # Ignore log files
 logs/
+
+# Ignore temporary files
+notebooks/EDA_temp_file.ipynb
+
+# Ignore Models
+models/

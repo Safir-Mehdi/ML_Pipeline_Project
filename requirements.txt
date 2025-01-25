@@ -8,4 +8,6 @@ scikit-learn
 category_encoders
 scipy
 requests
+bs4
+plotly
 -e .
