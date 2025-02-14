@@ -1,0 +1,45 @@
+{
+    "education": [
+        "Preschool",
+        "1st-4th",
+        "5th-6th",
+        "7th-8th",
+        "9th",
+        "10th",
+        "11th",
+        "12th",
+        "HS-grad",
+        "Some-college",
+        "Assoc-acdm",
+        "Assoc-voc",
+        "Bachelors",
+        "Masters",
+        "Prof-school",
+        "Doctorate"
+    ],
+    "education_level": [
+        "Low",
+        "Medium",
+        "High"
+    ],
+    "age_group": [
+        "Childern",
+        "Young Adults",
+        "Middle Aged",
+        "Seniors"
+    ],
+    "winsorize_limit": {
+        "hours_per_week": [
+            0.001,
+            0.988
+        ],
+        "capital_gain": [
+            0.05,
+            0.993
+        ],
+        "capital_loss": [
+            0.0,
+            0.993
+        ]
+    }
+}
