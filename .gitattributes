@@ -9,3 +9,6 @@
 
 # Normalize CSV files to LF
 *.csv text eol=lf
+
+# Normalize JSON files to LF
+*.json text eol=lf
