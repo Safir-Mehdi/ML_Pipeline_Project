@@ -1,0 +1,35 @@
+{
+    "onehot_features": [
+        "sex",
+        "race"
+    ],
+    "ordinal_features": [
+        "education"
+    ],
+    "frequency_features": [
+        "workclass",
+        "occupation",
+        "native_country"
+    ],
+    "target_features": [
+        "relationship",
+        "marital_status"
+    ],
+    "winsorize_features": [
+        "hours_per_week",
+        "capital_gain",
+        "capital_loss"
+    ],
+    "label_features": [
+        "income"
+    ],
+    "scale_features": [
+        "hours_per_week",
+        "capital_gain",
+        "capital_loss",
+        "fnlwgt",
+        "education_num",
+        "age"
+    ],
+    "remander_features": []
+}

@@ -1,0 +1,10 @@
+{
+    "logistic_regression__tol": 0.001,
+    "logistic_regression__solver": "saga",
+    "logistic_regression__penalty": "l2",
+    "logistic_regression__multi_class": "ovr",
+    "logistic_regression__max_iter": 200,
+    "logistic_regression__l1_ratio": 0.1,
+    "logistic_regression__class_weight": "balanced",
+    "logistic_regression__C": 100
+}

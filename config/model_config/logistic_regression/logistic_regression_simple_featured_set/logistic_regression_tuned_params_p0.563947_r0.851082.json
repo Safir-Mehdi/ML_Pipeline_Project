@@ -1,0 +1,9 @@
+{
+    "logistic_regression__tol": 0.0001,
+    "logistic_regression__solver": "liblinear",
+    "logistic_regression__penalty": "l1",
+    "logistic_regression__multi_class": "ovr",
+    "logistic_regression__max_iter": 200,
+    "logistic_regression__class_weight": "balanced",
+    "logistic_regression__C": 100
+}

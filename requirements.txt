@@ -9,5 +9,6 @@ category_encoders
 scipy
 requests
 bs4
+xgboost
 plotly
 -e .

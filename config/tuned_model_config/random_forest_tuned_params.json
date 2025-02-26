@@ -1,0 +1,1 @@
+{"random_forest__random_state": 42, "random_forest__n_estimators": 400, "random_forest__min_samples_split": 2, "random_forest__min_samples_leaf": 4, "random_forest__max_features": "log2", "random_forest__max_depth": null, "random_forest__criterion": "gini", "random_forest__bootstrap": true}

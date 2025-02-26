@@ -1,0 +1,48 @@
+{
+    "logistic_regression__penalty": [
+        "l1",
+        "l2",
+        "elasticnet"
+    ],
+    "logistic_regression__C": [
+        0.001,
+        0.01,
+        0.1,
+        1,
+        10,
+        100
+    ],
+    "logistic_regression__solver": [
+        "liblinear",
+        "lbfgs",
+        "saga"
+    ],
+    "logistic_regression__max_iter": [
+        100,
+        200,
+        500
+    ],
+    "logistic_regression__class_weight": [
+        null,
+        "balanced",
+        {
+            "0": 1,
+            "1": 2
+        }
+    ],
+    "logistic_regression__tol": [
+        0.0001,
+        0.001,
+        0.01
+    ],
+    "logistic_regression__multi_class": [
+        "ovr"
+    ],
+    "logistic_regression__l1_ratio": {
+        "elasticnet": [
+            0.1,
+            0.5,
+            0.9
+        ]
+    }
+}

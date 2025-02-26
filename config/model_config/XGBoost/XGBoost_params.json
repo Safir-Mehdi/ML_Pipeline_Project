@@ -1,0 +1,47 @@
+{
+    "xgboost_classifier__objective": [
+        "binary:logistic"
+    ],
+    "xgboost_classifier__max_depth": [
+        3,
+        6,
+        9
+    ],
+    "xgboost_classifier__learning_rate": [
+        0.01,
+        0.1,
+        0.3
+    ],
+    "xgboost_classifier__n_estimators": [
+        100,
+        200,
+        500
+    ],
+    "xgboost_classifier__subsample": [
+        0.8,
+        1.0
+    ],
+    "xgboost_classifier__colsample_bytree": [
+        0.8,
+        1.0
+    ],
+    "xgboost_classifier__reg_alpha": [
+        0,
+        0.1,
+        1.0
+    ],
+    "xgboost_classifier__reg_lambda": [
+        0,
+        0.1,
+        1.0
+    ],
+    "xgboost_classifier__scale_pos_weight": [
+        1.5,
+        1.86,
+        2.0,
+        2.5
+    ],
+    "xgboost_classifier__eval_metric": [
+        "logloss"
+    ]
+}

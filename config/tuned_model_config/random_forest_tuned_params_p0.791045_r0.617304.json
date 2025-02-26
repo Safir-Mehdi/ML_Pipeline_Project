@@ -1,0 +1,10 @@
+{
+    "random_forest__random_state": 42,
+    "random_forest__n_estimators": 100,
+    "random_forest__min_samples_split": 5,
+    "random_forest__min_samples_leaf": 4,
+    "random_forest__max_features": "sqrt",
+    "random_forest__max_depth": 20,
+    "random_forest__criterion": "entropy",
+    "random_forest__bootstrap": true
+}
