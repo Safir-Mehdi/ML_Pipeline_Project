@@ -140,7 +140,7 @@ def fetch_data(FILE_NAME: str, DIRECTORY_NAME: str) -> pd.DataFrame:
     # Returning pandas DataFrame
     return income_data
 
-def transforme_DataFrame(transformed, preprocessor) -> Union[pd.DataFrame, pd.Series]:
+def transforme_DataFrame(transformed, preprocessor) -> Union[pd.DataFrame, pd.Series]:  
     all_feature_names = []
     if hasattr(preprocessor, 'transformers_'):
         for _, transformer, features in preprocessor.transformers_:

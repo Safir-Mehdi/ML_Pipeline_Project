@@ -17,4 +17,31 @@ logs/
 notebooks/EDA_temp_file.ipynb
 
 # Ignore Models
-models/
+
+# -> Ignore the random forest on imputer
+models/Random_Forest_Imputuer_Dict.pkl
+
+# -> Tgnore logstic regression models
+models/logistic_regression/logistic_regression_featured_set/logistic_regression_baseline_p0.741342_r0.569884.pkl
+models/logistic_regression/logistic_regression_featured_set/logistic_regression_tuned_p0.571429_r0.845258.pkl
+models/logistic_regression/logistic_regression_featured_set/logistic_regression_trained_tuned_pipeline/logistic_regression_trained_pipeline.pkl
+models/logistic_regression/logistic_regression_simple_featured_set/logistic_regression_baseline_p0.72658_r0.554908.pkl
+models/logistic_regression/logistic_regression_simple_featured_set/logistic_regression_tuned_p0.563947_r0.851082.pkl
+models/logistic_regression/logistic_regression_simple_featured_set/logistic_regression_trained_tuned_pipeline/logistic_regression_trained_pipeline.pkl
+
+# -> Ignore random forest models
+models/random_forest/random_forest_featured_set/random_forest_baseline_p0.769231_r0.648918.pkl
+models/random_forest/random_forest_featured_set/random_forest_tuned_p0.791045_r0.617304.pkl
+models/random_forest/random_forest_featured_set/random_forest_trained_tuned_pipeline/random_forest_trained_pipeline.pkl
+models/random_forest/random_forest_simple_featured_set/random_forest_baseline_p0.78373_r0.657238.pkl
+models/random_forest/random_forest_simple_featured_set/random_forest_tuned_p0.796875_r0.636439.pkl
+models/random_forest/random_forest_simple_featured_set/random_forest_trained_tuned_pipeline/random_forest_trained_pipeline.pkl
+
+# -> Ignore XGBoost models
+models/XGBoost/XGBoost_featured_set/xgboost_baseline_p0.780347_r0.673877.pkl
+models/XGBoost/XGBoost_featured_set/XGBoost_tuned_p0.728868_r0.760399.pkl
+models/XGBoost/XGBoost_featured_set/XGBoost_trained_tuned_pipeline/XGBoost_trained_pipeline.pkl
+models/XGBoost/XGBoost_simple_featured_set/xgboost_baseline_p0.773333_r0.675541.pkl
+models/XGBoost/XGBoost_simple_featured_set/xgboost_tuned_p0.700441_r0.793677.pkl
+models/XGBoost/XGBoost_simple_featured_set/XGBoost_trained_tuned_pipeline/XGBoost_trained_pipeline.pkl
+
