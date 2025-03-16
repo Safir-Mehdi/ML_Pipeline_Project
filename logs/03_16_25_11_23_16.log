@@ -1,0 +1,21 @@
+[ 2025-03-16 11:23:16,707 ] 276 root - INFO - ****Testing Started****
+[ 2025-03-16 11:23:18,176 ] 184 root - INFO - ****Data Transformation Started****
+[ 2025-03-16 11:23:18,213 ] 195 root - INFO - ****Data Transformation Completed****
+[ 2025-03-16 11:23:18,213 ] 307 root - INFO - Passed <10> Rows for Prediction
+[ 2025-03-16 11:23:18,213 ] 219 root - INFO - ****Prediction Started****
+[ 2025-03-16 11:23:19,297 ] 268 root - INFO - ****Prediction Completed****
+[ 2025-03-16 11:23:19,298 ] 309 root - INFO - Shape:(10, 15)
+[ 2025-03-16 11:23:19,315 ] 310 root - INFO -      age  fnlwgt  education-num  capital-gain  capital-loss  ...   relationship                race     sex native-country income
+14    40  121772             11             0             0  ...        Husband  Asian-Pac-Islander    Male    Philippines   >50K
+27    54  180211             10             0             0  ...        Husband  Asian-Pac-Islander    Male          South   >50K
+38    31   84154             10             0             0  ...        Husband               White    Male  United-States   >50K
+51    18  226956              9             0             0  ...      Own-child               White  Female  United-States  <=50K
+61    32  293936              4             0             0  ...  Not-in-family               White    Male         Mexico  <=50K
+69    25  200681             10             0             0  ...      Own-child               White    Male  United-States  <=50K
+77    67  212759              6             0             0  ...        Husband               White    Male  United-States  <=50K
+93    30  117747              9             0          1573  ...           Wife  Asian-Pac-Islander  Female        Vietnam  <=50K
+106   17  304873              6         34095             0  ...      Own-child               White  Female  United-States  <=50K
+128   35  129305              9             0             0  ...        Husband               White    Male  United-States  <=50K
+
+[10 rows x 15 columns]
+[ 2025-03-16 11:23:19,316 ] 312 root - INFO - ****Testing Completed****

@@ -1,0 +1,23 @@
+[ 2025-03-16 11:37:57,956 ] 276 root - INFO - ****Testing Started****
+[ 2025-03-16 11:38:00,161 ] 184 root - INFO - ****Data Transformation Started****
+[ 2025-03-16 11:38:00,208 ] 195 root - INFO - ****Data Transformation Completed****
+[ 2025-03-16 11:38:00,208 ] 307 root - INFO - Passed <10> Rows for Prediction
+[ 2025-03-16 11:38:00,208 ] 219 root - INFO - ****Prediction Started****
+[ 2025-03-16 11:38:01,989 ] 268 root - INFO - ****Prediction Completed****
+[ 2025-03-16 11:38:01,989 ] 309 root - INFO - Shape:(10, 15)
+[ 2025-03-16 11:38:02,011 ] 310 root - INFO -      age  fnlwgt  education-num  capital-gain  capital-loss  ...   relationship                race     sex native-country income
+14    40  121772             11             0             0  ...        Husband  Asian-Pac-Islander    Male    Philippines   >50K
+27    54  180211             10             0             0  ...        Husband  Asian-Pac-Islander    Male          South   >50K
+38    31   84154             10             0             0  ...        Husband               White    Male  United-States   >50K
+51    18  226956              9             0             0  ...      Own-child               White  Female  United-States  <=50K
+61    32  293936              4             0             0  ...  Not-in-family               White    Male         Mexico  <=50K
+69    25  200681             10             0             0  ...      Own-child               White    Male  United-States  <=50K
+77    67  212759              6             0             0  ...        Husband               White    Male  United-States  <=50K
+93    30  117747              9             0          1573  ...           Wife  Asian-Pac-Islander  Female        Vietnam  <=50K
+106   17  304873              6         34095             0  ...      Own-child               White  Female  United-States  <=50K
+128   35  129305              9             0             0  ...        Husband               White    Male  United-States  <=50K
+
+[10 rows x 15 columns]
+[ 2025-03-16 11:38:02,011 ] 219 root - INFO - ****Prediction Started****
+[ 2025-03-16 11:38:02,011 ] 233 root - INFO - ****No missing values found in the dataset.****
+[ 2025-03-16 11:38:02,011 ] 315 root - INFO - ****Testing Completed****

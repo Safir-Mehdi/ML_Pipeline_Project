@@ -50,7 +50,7 @@ class FrequencyEncoder(BaseTransformer):
         return X.apply(lambda feature: feature.map(self.frequency_map[feature.name]).fillna(self.fillna))
            
     
-    # This class is not compatible with the ColumnTransformer in Scikit-learn, So we need some changes in it
+# This class is not compatible with the ColumnTransformer in Scikit-learn, So we need some changes in it
 class Winsorizer(BaseTransformer):
     def __init__(self, feature_limits: dict = None):
         super().__init__()
@@ -59,13 +59,18 @@ class Winsorizer(BaseTransformer):
     
     def fit(self, X, y=None):
         # print(self.feature_limits)
+        # print('X type: ', type(X))
         return self
     
     def transform(self, X):
         if isinstance(X, np.ndarray):
+            feature_names = self.feature_limits.keys()
+            super().set_feature_names(feature_names=feature_names)
             X = pd.DataFrame(X, columns=self.feature_names)
         elif not isinstance(X, pd.DataFrame):
             raise ValueError('Input data must be a pandas DataFrame or numpy array.')
+        # print(self.feature_names)
+        # print(X)
         for feature, limit in self.feature_limits.items():
             if feature in X.columns:
                 lower_percentile, upper_percentile = limit

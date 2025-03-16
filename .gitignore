@@ -11,15 +11,16 @@ ML_Pipeline_Project.egg-info/
 src/__pycache__
 
 # Ignore log files
-logs/
+notebooks/logs/
 
 # Ignore temporary files
 notebooks/EDA_temp_file.ipynb
+notebooks/Code_Testing.ipynb
 
 # Ignore Models
 
 # -> Ignore the random forest on imputer
-models/Random_Forest_Imputuer_Dict.pkl
+models/missing_value_imputer/Random_Forest_Imputuer_Dict.pkl
 
 # -> Tgnore logstic regression models
 models/logistic_regression/logistic_regression_featured_set/logistic_regression_baseline_p0.741342_r0.569884.pkl
