@@ -19,7 +19,7 @@
         "relationship",
         "marital_status"
     ],
-    "winsorize_featues": [
+    "winsorize_features": [
         "hours_per_week",
         "capital_gain",
         "capital_loss"

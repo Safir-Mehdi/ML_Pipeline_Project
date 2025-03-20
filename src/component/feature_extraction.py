@@ -5,7 +5,7 @@ from sklearn.base import BaseEstimator, TransformerMixin
 
 class FeatureExtractor(BaseEstimator, TransformerMixin):
     def __init__(self):
-        with open('config/mappings.json', 'r') as json_file:
+        with open('config/data_config/mappings.json', 'r') as json_file:
             self.mappings = json.load(json_file)
     
     def fit(self, X, y=None):
@@ -18,14 +18,14 @@ class FeatureExtractor(BaseEstimator, TransformerMixin):
             x=X['age'],
             bins=[0, 18, 35, 55, X['age'].max() + 20],
             labels=['Childern', 'Young Adults', 'Middle Aged', 'Seniors']
-            ).astype(object)
+            ).astype('object')
 
         # 2. Obtain Employment Type from -> Hours Per Week
         X['employment_type'] = pd.cut(
             x=X['hours_per_week'],
             bins=[0, 20, 40, X['hours_per_week'].max() + 1],
             labels=['Part-Time', 'Full-Time', 'Over-Time']
-            ).astype(object)
+            ).astype('object')
 
         # 3. Get Work-Life Balance from -> Hours Per Week and
         X['work_life_balance'] = X['hours_per_week']/168

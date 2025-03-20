@@ -1,0 +1,10 @@
+[ 2025-03-21 00:54:43,093 ] 375 root - INFO - <<<<< Testing Class: Feature Transformation Started >>>>>
+[ 2025-03-21 00:54:43,234 ] 223 root - INFO - ***** Feature Transformation Started *****
+[ 2025-03-21 00:54:43,234 ] 230 root - INFO - >>> Fitting ColumnTransformer Started. <<<
+[ 2025-03-21 00:54:43,329 ] 284 root - INFO - Transformer has been Saved
+[ 2025-03-21 00:54:43,329 ] 286 root - INFO - >>> ColumnTransformer has been Fitted. <<<
+[ 2025-03-21 00:54:43,329 ] 298 root - INFO - >>> Transforming Data Started <<<
+[ 2025-03-21 00:54:43,422 ] 132 root - INFO - Data Preparation Started
+[ 2025-03-21 00:54:43,532 ] 179 root - INFO - Data Preparation Completed
+[ 2025-03-21 00:54:43,532 ] 367 root - INFO - >>> Data Transformation Completed <<<
+[ 2025-03-21 00:54:43,731 ] 385 root - INFO - <<<<< Testing of Class: Feature Transformation Successfully Completed >>>>>

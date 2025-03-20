@@ -1,0 +1,4 @@
+[ 2025-03-21 01:39:22,924 ] 377 root - INFO - <<<<< Testing Class: Feature Transformation Started >>>>>
+[ 2025-03-21 01:39:23,192 ] 224 root - INFO - ***** Feature Transformation Started *****
+[ 2025-03-21 01:39:23,192 ] 231 root - INFO - >>> Fitting ColumnTransformer Started. <<<
+[ 2025-03-21 01:39:23,192 ] 95 root - ERROR - An error occurred during the fit process: 'winsorize_features'

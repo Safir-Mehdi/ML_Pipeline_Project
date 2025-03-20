@@ -1,0 +1,26 @@
+[ 2025-03-21 00:58:53,306 ] 375 root - INFO - <<<<< Testing Class: Feature Transformation Started >>>>>
+[ 2025-03-21 00:58:53,494 ] 223 root - INFO - ***** Feature Transformation Started *****
+[ 2025-03-21 00:58:53,494 ] 230 root - INFO - >>> Fitting ColumnTransformer Started. <<<
+[ 2025-03-21 00:58:53,588 ] 284 root - INFO - Transformer has been Saved
+[ 2025-03-21 00:58:53,588 ] 286 root - INFO - >>> ColumnTransformer has been Fitted. <<<
+[ 2025-03-21 00:58:53,588 ] 298 root - INFO - >>> Transforming Data Started <<<
+[ 2025-03-21 00:58:53,675 ] 132 root - INFO - Data Preparation Started
+[ 2025-03-21 00:58:53,706 ] 179 root - INFO - Data Preparation Completed
+[ 2025-03-21 00:58:53,721 ] 367 root - INFO - >>> Data Transformation Completed <<<
+[ 2025-03-21 00:58:53,768 ] 382 root - INFO - Training Data:
+   hours_per_week  capital_gain  capital_loss relationship  ... native_country    fnlwgt  education_num       age
+0        0.346939      0.000000           0.0    Unmarried  ...       0.911027  0.042070       0.933333  0.150685
+1        0.316327      0.000000           0.0      Husband  ...       0.001482  0.111274       0.533333  0.328767
+2        0.448980      0.000000           0.0      Husband  ...       0.004330  0.187615       0.533333  0.493151
+3        0.397959      0.076881           0.0      Husband  ...       0.911027  0.136356       0.533333  0.191781
+
+[4 rows x 19 columns]
+[ 2025-03-21 00:58:53,819 ] 383 root - INFO - Testing Data:
+   hours_per_week  capital_gain  capital_loss   relationship  ... native_country    fnlwgt  education_num       age
+0        0.551020           0.0           0.0  Not-in-family  ...       0.911027  0.042070       0.933333  0.150685
+1        0.397959           0.0           0.0        Husband  ...       0.001482  0.111274       0.533333  0.328767
+2        0.500000           0.0           0.0        Husband  ...       0.004330  0.187615       0.533333  0.493151
+3        0.448980           0.0           0.0        Husband  ...       0.911027  0.136356       0.533333  0.191781
+
+[4 rows x 24 columns]
+[ 2025-03-21 00:58:53,819 ] 385 root - INFO - <<<<< Testing of Class: Feature Transformation Successfully Completed >>>>>

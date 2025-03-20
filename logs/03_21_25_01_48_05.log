@@ -1,0 +1,26 @@
+[ 2025-03-21 01:48:05,955 ] 377 root - INFO - <<<<< Testing Class: Feature Transformation Started >>>>>
+[ 2025-03-21 01:48:06,341 ] 224 root - INFO - ***** Feature Transformation Started *****
+[ 2025-03-21 01:48:06,341 ] 231 root - INFO - >>> Fitting ColumnTransformer Started. <<<
+[ 2025-03-21 01:48:06,602 ] 257 root - INFO - Transformer has been Saved
+[ 2025-03-21 01:48:06,602 ] 287 root - INFO - >>> ColumnTransformer has been Fitted. <<<
+[ 2025-03-21 01:48:06,602 ] 299 root - INFO - >>> Transforming Data Started <<<
+[ 2025-03-21 01:48:07,001 ] 133 root - INFO - Data Preparation Started
+[ 2025-03-21 01:48:07,049 ] 180 root - INFO - Data Preparation Completed
+[ 2025-03-21 01:48:07,049 ] 368 root - INFO - >>> Data Transformation Completed <<<
+[ 2025-03-21 01:48:07,143 ] 398 root - INFO - Training Data:
+   hours_per_week  capital_gain  capital_loss  ... over_time_flag is_educated_flag  is_married_flag
+0        0.346939      0.000000           0.0  ...            0.0              0.0              0.0
+1        0.316327      0.000000           0.0  ...            0.0              0.0              1.0
+2        0.448980      0.000000           0.0  ...            1.0              1.0              1.0
+3        0.397959      0.076881           0.0  ...            0.0              1.0              1.0
+
+[4 rows x 37 columns]
+[ 2025-03-21 01:48:07,252 ] 399 root - INFO - Testing Data:
+   hours_per_week  capital_gain  capital_loss  ... over_time_flag is_educated_flag  is_married_flag
+0        0.551020           0.0           0.0  ...            1.0              1.0              0.0
+1        0.397959           0.0           0.0  ...            0.0              0.0              1.0
+2        0.500000           0.0           0.0  ...            1.0              0.0              1.0
+3        0.448980           0.0           0.0  ...            1.0              0.0              1.0
+
+[4 rows x 37 columns]
+[ 2025-03-21 01:48:07,252 ] 401 root - INFO - <<<<< Testing of Class: Feature Transformation Successfully Completed >>>>>
