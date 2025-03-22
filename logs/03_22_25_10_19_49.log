@@ -1,0 +1,8 @@
+[ 2025-03-22 10:19:52,078 ] 83 root - INFO - <<<<< Target Feature Transformation Started >>>>>
+[ 2025-03-22 10:19:52,828 ] 224 root - INFO - ***** Feature Transformation Started *****
+[ 2025-03-22 10:19:52,828 ] 231 root - INFO - >>> Fitting ColumnTransformer Started. <<<
+[ 2025-03-22 10:19:52,906 ] 287 root - INFO - >>> ColumnTransformer has been Fitted. <<<
+[ 2025-03-22 10:19:52,906 ] 16 root - INFO - ***** Target Transformation Started*****
+[ 2025-03-22 10:19:52,906 ] 34 root - INFO - >>> Fitting Target Feature <<<
+[ 2025-03-22 10:19:52,906 ] 44 root - INFO - Label Encoder has been Saved
+[ 2025-03-22 10:19:52,906 ] 46 root - INFO - >>> Target Feature Fitted Successfully <<<

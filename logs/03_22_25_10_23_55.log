@@ -1,0 +1,21 @@
+[ 2025-03-22 10:23:55,936 ] 83 root - INFO - <<<<< Target Feature Transformation Started >>>>>
+[ 2025-03-22 10:23:56,129 ] 224 root - INFO - ***** Feature Transformation Started *****
+[ 2025-03-22 10:23:56,129 ] 231 root - INFO - >>> Fitting ColumnTransformer Started. <<<
+[ 2025-03-22 10:23:56,207 ] 287 root - INFO - >>> ColumnTransformer has been Fitted. <<<
+[ 2025-03-22 10:23:56,207 ] 16 root - INFO - ***** Target Transformation Started*****
+[ 2025-03-22 10:23:56,207 ] 34 root - INFO - >>> Fitting Target Feature <<<
+[ 2025-03-22 10:23:56,207 ] 44 root - INFO - Label Encoder has been Saved
+[ 2025-03-22 10:23:56,207 ] 46 root - INFO - >>> Target Feature Fitted Successfully <<<
+[ 2025-03-22 10:23:56,207 ] 53 root - INFO - >>> Transforming Target Feature <<<
+[ 2025-03-22 10:23:56,207 ] 74 root - INFO - >>> Target Feature has been Transformed Successfully <<<
+[ 2025-03-22 10:23:56,207 ] 107 root - INFO - 0    0
+1    0
+2    1
+3    1
+Name: income, dtype: int32
+[ 2025-03-22 10:23:56,207 ] 108 root - INFO - 0    1
+1    0
+2    1
+3    0
+Name: income, dtype: int32
+[ 2025-03-22 10:23:56,207 ] 110 root - INFO - <<<<< Transformation Successsfully Completed >>>>>
