@@ -1,9 +1,9 @@
+import os
 import joblib
-import json
 import pandas as pd
 import numpy as np
 from typing import Union, Optional, Tuple
-from transformation import FrequencyEncoder, Winsorizer
+from src.component.transformation import FrequencyEncoder, Winsorizer
 from src.utils import fetch_data, transforme_DataFrame
 from sklearn.preprocessing import OrdinalEncoder, OneHotEncoder, TargetEncoder, LabelEncoder
 from sklearn.base import BaseEstimator, TransformerMixin
@@ -19,6 +19,12 @@ def create_pipeline(imputer_strategy, transformer):
         ('imputer', SimpleImputer(strategy=imputer_strategy)),
         ('encoder', transformer)
     ])
+
+# Function is to save ColumnTransformer object.
+def save_trans(trans, file_name, file_path):
+    with open(os.path.join(file_path, file_name), 'wb') as file:
+        joblib.dump(trans, file)
+        logging.info(f'Obj has been saved successfully.\nFile Path: {file}')
 
 class TransformData(BaseEstimator, TransformerMixin):
     def __init__(
@@ -158,14 +164,14 @@ class TransformData(BaseEstimator, TransformerMixin):
             encode.fit(X[col])
                 
         if save:
-            filepath = 'models/missing_value_imputer/'
-            for file_name, encoder in zip(
-                ['column_transformer.pkl', 'label_encoder_dict.pkl'],
-                [preprocessor, label_encoder_dict]
-                ):
-                with open(filepath + file_name, 'wb') as file:
-                    joblib.dump(encoder, file)
-            logging.info(f'Column Transformer obj has been saved successfully.\nFile Path: {filepath}')
+            
+            file_path = os.path.join('models', 'missing_value_imputer')
+            
+            # Save the preprocessor
+            save_trans(trans=preprocessor, file_name='column_transformer.pkl', file_path=file_path)
+            
+            # Save the Label Encoder Dict
+            save_trans(trans=label_encoder_dict, file_name='label_encoder_dict.pkl', file_path=file_path)
         
         X_transformed = transforme_DataFrame(transformed=X_transformed, preprocessor=preprocessor)  
         logging.info('****Data Transformation Completed****')
