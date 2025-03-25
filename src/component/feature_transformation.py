@@ -2,8 +2,7 @@ import joblib
 import os
 import json
 import pandas as pd
-import numpy as np
-from src.utils import transforme_DataFrame, fetch_data
+from src.utils import fetch_data
 from src.logger import logging
 from typing import Union, Optional, Literal, Tuple
 from sklearn.base import BaseEstimator, TransformerMixin
@@ -123,41 +122,36 @@ def save_trans(trans, file_name, file_path):
 # - Concatinating all component into a single Pandas DataFrame
 def prepare_data(
     X_train,
-    X_test,
+    X_test: Optional[pd.DataFrame],
     X_train_transformed,
-    X_test_transformed,
+    X_test_transformed: Optional[pd.DataFrame],
     preprocessor,
     features
-    ) -> Tuple[pd.DataFrame, pd.DataFrame]:
+    ) -> Tuple[pd.DataFrame, Optional[pd.DataFrame]]:
     
     logging.info(msg='Data Preparation Started')
     
-    # Spet the name for the columns
-    for name, cols in zip(
-        ['frequency', 'winsorizer'],
-        [features['frequency_features'], features['winsorize_features']]
-    ):
-        preprocessor.named_transformers_[name].set_feature_names(cols)
+    # Check if both are None, and '!=' is working there as an 'XOR'
+    if (X_test is None) != (X_test_transformed is None):
+        raise ValueError(
+            "Exactly one of 'X_test' or 'X_test_transformed' is None. Both must be provided or None."
+            )
+    
+    # Fetch the names from preprocessor
+    cols = preprocessor.get_feature_names_out()
     
     # Converte them into a DataFrame
-    X_train_transformed = transforme_DataFrame(transformed=X_train_transformed, preprocessor=preprocessor)
-    X_test_transformed = transforme_DataFrame(transformed=X_test_transformed, preprocessor=preprocessor)
+    X_train_transformed = pd.DataFrame(data=X_train_transformed, columns=cols)
     
     # Drop Duplicated Winsorize Features by Selecting there Scale Version
-    train_duplicated_features = X_train_transformed[features['winsorize_features']]
-    test_duplicated_features = X_test_transformed[features['winsorize_features']]
-    
-    scaled_train_features = train_duplicated_features.loc[
+    scaled_train_features = X_train_transformed.loc[
         :,
-        (train_duplicated_features.ge(0) & train_duplicated_features.le(1)).all()
-    ]
-    scaled_test_features = test_duplicated_features.loc[
-        :,
-        (test_duplicated_features.ge(0) & test_duplicated_features.le(1)).all()
+        ['minmax__'+col for col in features['winsorize_features']]
     ]
     
-    X_train_transformed.drop(columns=features['winsorize_features'], axis=1, inplace=True)
-    X_test_transformed.drop(columns=features['winsorize_features'], axis=1, inplace=True)
+    columns_to_remove = features['winsorize_features']
+    pattern = '|'.join(columns_to_remove)
+    X_train_transformed = X_train_transformed.loc[:, ~X_train_transformed.columns.str.contains(pattern)]
     
     # Concatenate all brocken sets based on features
     X_train_transformed = pd.concat(
@@ -168,29 +162,58 @@ def prepare_data(
         ],
         axis=1
     )
-    X_test_transformed = pd.concat(
-        [
-            scaled_test_features,
-            X_test[features['target_features']].reset_index(drop=True),
-            X_test_transformed
-        ],
-        axis=1
-    )
+    
+    if X_test is not None:
+        
+        # Converte them into a DataFrame
+        X_test_transformed = pd.DataFrame(data=X_test_transformed, columns=cols)
+        
+        # Drop Duplicated Winsorize Features by Selecting there Scale Version
+        scaled_test_features = X_test_transformed.loc[
+        :,
+        ['minmax__'+col for col in features['winsorize_features']]
+        ]
+        
+        columns_to_remove = features['winsorize_features']
+        pattern = '|'.join(columns_to_remove)
+        X_test_transformed = X_test_transformed.loc[:, ~X_test_transformed.columns.str.contains(pattern)]
+        
+        # Concatenate all brocken sets based on features
+        X_test_transformed = pd.concat(
+            [
+                scaled_test_features,
+                X_test[features['target_features']].reset_index(drop=True),
+                X_test_transformed
+            ],
+            axis=1
+        )
     
     logging.info(msg='Data Preparation Completed')
     
-    # Return <Train DataFrame> & <Test DataFrame>
+    # Return <Train DataFrame> & <Test DataFrame or None>
     return X_train_transformed, X_test_transformed    
-    
+
+def log_mode(mode_msg = str):
+    logging.info(
+        f'''
+        **************************************************
+        {mode_msg}
+        **************************************************
+        ''') 
 
 class FeatureTransformation(BaseEstimator, TransformerMixin):
-    def __init__(self, X):
+    def __init__(
+        self, X,
+        preprocessor: Optional[ColumnTransformer] = None,
+        training=True
+        ):
         
         if not isinstance(X, pd.DataFrame):
             # logging.error()
             raise TypeError(f'X must be a Pandas DataFrame - got: {type(X)}')
 
-        self.preprocessor = None
+        self.preprocessor = preprocessor
+        self.training = training
         
         # Load All Data Configurations Files For Column Transformation
         file_names = {
@@ -209,17 +232,41 @@ class FeatureTransformation(BaseEstimator, TransformerMixin):
         self.transform_features = file_names['transform_features']
         self.simple_transform_features = file_names['simple_transform_features']
         
-        # Split Data Into Train & Test Sets
-        splitted_dict = train_test_split_(X=X, features=self.transform_features)
-        self.X_train, self.X_test = splitted_dict['X_train'], splitted_dict['X_test']
-        self.y_train, self.y_test = splitted_dict['y_train'], splitted_dict['y_test']
-        self.X_train_dropped, self.X_test_dropped = splitted_dict['X_train_dropped'], splitted_dict['X_test_dropped']
-
+        # If is a Training Mode & Else is a Serving Mode
+        if self.training:
+            
+            mode = 'Data Transformetion is Running at Training Mode'
+            log_mode(mode_msg=mode)
+            
+            # Split Data Into Train & Test Sets
+            splitted_dict = train_test_split_(X=X, features=self.transform_features)
+            self.X_train, self.X_test = splitted_dict['X_train'], splitted_dict['X_test']
+            self.y_train, self.y_test = splitted_dict['y_train'], splitted_dict['y_test']
+            self.X_train_dropped, self.X_test_dropped = splitted_dict['X_train_dropped'], splitted_dict['X_test_dropped']
+        else:
+            
+            if not isinstance(preprocessor, ColumnTransformer):
+                raise TypeError(
+                    f'preprocessor must be a sklearn.compose.ColumnTransformer - got: {type(preprocessor)}'
+                    )
+            
+            mode = 'Data Transformation is Running at Serving Mode'
+            log_mode(mode_msg=mode)
+            
+            # Just Assign to the X_train (X_pred - According to the code) and X_train_dropped
+            self.X_train = X
+            self.X_train_dropped = X.drop(columns=self.transform_features['target_features'])
         
     def fit(self,
             type_: Optional[Literal['simple_transform', 'transfrom']] = None,
             save: bool = False
             ):
+        
+        if not self.training:
+            raise RuntimeError(
+        "Cannot call 'fit()' in serving mode. "
+        "Set 'training=True' or initialize the object in training mode."
+        )
         
         logging.info(msg='***** Feature Transformation Started *****')
         
@@ -308,24 +355,42 @@ class FeatureTransformation(BaseEstimator, TransformerMixin):
             
         try:
             
-            # Transforming the Dataset using the Fitted Transformer.
-            X_train_transformed = transform_data(X=self.X_train_dropped, preprocessor=self.preprocessor)
-            X_test_transformed = transform_data(X=self.X_test_dropped, preprocessor=self.preprocessor)
-        
+            if self.training:
+                
+                # Transforming the Dataset using the Fitted Transformer.
+                X_train_transformed = transform_data(X=self.X_train_dropped, preprocessor=self.preprocessor)
+                X_test_transformed = transform_data(X=self.X_test_dropped, preprocessor=self.preprocessor)
+
+            else:
+                
+                X_train_transformed = transform_data(X=self.X_train_dropped, preprocessor=self.preprocessor)
+                
         except Exception as e:
             raise(f"An error occurred: {e}")
         
         if type_ == 'transfrom':
+            # Check the Docs by Press Ctrl + Left Click on the function 'prepare_data'
             
-            # Check the Docs by Press Ctrl + Left Click
-            X_train_transformed, X_test_transformed= prepare_data(
-                X_train=self.X_train,
-                X_test=self.X_test,
-                X_train_transformed=X_train_transformed,
-                X_test_transformed=X_test_transformed,
-                preprocessor=self.preprocessor,
-                features=self.transform_features
-                )
+            if self.training:
+                
+                X_train_transformed, X_test_transformed= prepare_data(
+                    X_train=self.X_train,
+                    X_test=self.X_test,
+                    X_train_transformed=X_train_transformed,
+                    X_test_transformed=X_test_transformed,
+                    preprocessor=self.preprocessor,
+                    features=self.transform_features
+                    )
+            
+            else:
+                X_train_transformed, X_test_transformed = prepare_data(
+                    X_train=self.X_train,
+                    X_test=None,
+                    X_train_transformed=X_train_transformed,
+                    X_test_transformed=None,
+                    preprocessor=self.preprocessor,
+                    features=self.transform_features
+                    )
             
             # Save Transformed Data if True
             if save:
@@ -342,16 +407,31 @@ class FeatureTransformation(BaseEstimator, TransformerMixin):
                 
         else:
             
-            # Check the Docs by Press Ctrl + Left Click
-            X_train_transformed, X_test_transformed = prepare_data(
-                X_train=self.X_train,
-                X_test=self.X_test,
-                X_train_transformed=X_train_transformed,
-                X_test_transformed=X_test_transformed,
-                preprocessor=self.preprocessor,
-                features=self.simple_transform_features
-            )
-        
+            # Check the Docs by Press Ctrl + Left Click on the function prepare_data
+            if self.training:
+                
+                # For Training
+                X_train_transformed, X_test_transformed= prepare_data(
+                    X_train=self.X_train,
+                    X_test=self.X_test,
+                    X_train_transformed=X_train_transformed,
+                    X_test_transformed=X_test_transformed,
+                    preprocessor=self.preprocessor,
+                    features=self.transform_features
+                    )
+            
+            else:
+                
+                # For Serving
+                X_train_transformed, X_test_transformed = prepare_data(
+                    X_train=self.X_train,
+                    X_test=None,
+                    X_train_transformed=X_train_transformed,
+                    X_test_transformed=None,
+                    preprocessor=self.preprocessor,
+                    features=self.transform_features
+                    )
+            
             # Save Transformed Data if True
             if save:
                 X_train_transformed.to_csv(
@@ -379,24 +459,63 @@ if __name__ == '__main__':
     # Fetch Data
     income_data = fetch_data(FILE_NAME='income_data_nona.csv', DIRECTORY_NAME='raw')
     
-    # Fit and Transform Data Simple Featured Dataset Using FeatureTransformer Class(For Testing Perpose) 
+    # ***************************************************************************************************
+    
+    # Fit and Transform Data For 'Simple Featured Dataset' Using FeatureTransformer Class(For Testing Perpose)
+    
+    # ---------------------------------------------------
+    
+    # 1. For Training
     # transform_ = FeatureTransformation(X=income_data)
     # transform_.fit(type_='simple_transform', save=True)
     # X_train_transformed, X_test_transformed = transform_.transform(X=income_data, type_='simple_transform')
     
+    # ---------------------------------------------------
+    
+    # 2. For Serving
+    # Here you write a code.
+    # instance = income_data.iloc[0:1]
+    
+    # file_path = r'artifacts\column_transformers\simple_featured_transformer.pkl'
+    # with open(file_path, 'rb') as file:
+    #     preprocessor = joblib.load(file)
+    
+    # serving_trans = FeatureTransformation(X=instance, preprocessor=preprocessor, training=False)
+    # X_train_transformed, X_test_transformed = serving_trans.transform(X=instance, type_='simple_transform')
+    
+    #  ***************************************************************************************************
+    
     # Fit and Transform Data Featured Dataset Using FeatureTransformer Class(For Testing Perpose)
+    
     # Extract New Features & Fit Transform Them.
     extractor = FeatureExtractor()
     income_data = extractor.fit_transform(X=income_data)
     
-    # Create an Instanse
-    transform_ = FeatureTransformation(X=income_data)
-    transform_.fit(type_='transform', save=True)
-    X_train_transformed, X_test_transformed = transform_.transform(X=income_data, type_='transform')
+    # ---------------------------------------------------
     
+    # # 1. For Training
+    # transform_ = FeatureTransformation(X=income_data)
+    # transform_.fit(type_='transform')
+    # X_train_transformed, X_test_transformed = transform_.transform(X=income_data, type_='transform')
+    
+    # ---------------------------------------------------
+    
+    # 2. For Serving
+    instance = income_data.iloc[0:1]
+    
+    file_path = r'artifacts\column_transformers\featured_transformer.pkl'
+    with open(file_path, 'rb') as file:
+        preprocessor = joblib.load(file)
+    
+    serving_trans = FeatureTransformation(X=instance, preprocessor=preprocessor, training=False)
+    X_train_transformed, X_test_transformed = serving_trans.transform(X=instance, type_='transform')
+ 
     
     logging.info(f'Training Data:\n{X_train_transformed.head(4)}')
-    logging.info(f'Testing Data:\n{X_test_transformed.head(4)}')
+    logging.info(f'{X_train_transformed.columns}')
+    
+    if X_test_transformed is not None:
+        logging.info(f'Testing Data:\n{X_test_transformed.head(4)}')
     
     logging.info(msg='<<<<< Testing of Class: Feature Transformation Successfully Completed >>>>>')
     
