@@ -1,0 +1,16 @@
+[ 2025-03-25 12:13:20,631 ] 473 root - INFO - <<<<< Testing Class: Feature Transformation Started >>>>>
+[ 2025-03-25 12:13:20,756 ] 213 root - INFO - 
+        **************************************************
+        Data Transformation is Running at Serving Mode
+        **************************************************
+        
+[ 2025-03-25 12:13:20,756 ] 362 root - INFO - >>> Transforming Data Started <<<
+[ 2025-03-25 12:13:20,771 ] 133 root - INFO - Data Preparation Started
+[ 2025-03-25 12:13:20,771 ] 207 root - INFO - Data Preparation Completed
+[ 2025-03-25 12:13:20,771 ] 464 root - INFO - >>> Data Transformation Completed <<<
+[ 2025-03-25 12:13:20,787 ] 519 root - INFO - Training Data:
+   minmax__hours_per_week  minmax__capital_gain  minmax__capital_loss  ... minmax__fnlwgt minmax__education_num  minmax__age
+0                0.397959               0.02174                   0.0  ...       0.042616                   0.8      0.30137
+
+[1 rows x 25 columns]
+[ 2025-03-25 12:13:20,787 ] 524 root - INFO - <<<<< Testing of Class: Feature Transformation Successfully Completed >>>>>

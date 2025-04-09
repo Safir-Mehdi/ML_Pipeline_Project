@@ -1,0 +1,49 @@
+[ 2025-03-25 12:35:26,323 ] 458 root - INFO - <<<<< Testing Class: Feature Transformation Started >>>>>
+[ 2025-03-25 12:35:26,587 ] 198 root - INFO - 
+        **************************************************
+        Data Transformetion is Running at Training Mode
+        **************************************************
+        
+[ 2025-03-25 12:35:26,618 ] 272 root - INFO - ***** Feature Transformation Started *****
+[ 2025-03-25 12:35:26,618 ] 279 root - INFO - >>> Fitting ColumnTransformer Started. <<<
+[ 2025-03-25 12:35:26,680 ] 335 root - INFO - >>> ColumnTransformer has been Fitted. <<<
+[ 2025-03-25 12:35:26,680 ] 347 root - INFO - >>> Transforming Data Started <<<
+[ 2025-03-25 12:35:26,759 ] 133 root - INFO - Data Preparation Started
+[ 2025-03-25 12:35:26,774 ] 192 root - INFO - Data Preparation Completed
+[ 2025-03-25 12:35:26,774 ] 449 root - INFO - >>> Data Transformation Completed <<<
+[ 2025-03-25 12:35:26,805 ] 505 root - INFO - Training Data:
+   minmax__hours_per_week  minmax__capital_gain  ...  reminders__is_educated_flag reminders__is_married_flag
+0                0.346939              0.000000  ...                          0.0                        0.0
+1                0.316327              0.000000  ...                          0.0                        1.0
+2                0.448980              0.000000  ...                          1.0                        1.0
+3                0.397959              0.076881  ...                          1.0                        1.0
+
+[4 rows x 37 columns]
+[ 2025-03-25 12:35:26,805 ] 506 root - INFO - Index(['minmax__hours_per_week', 'minmax__capital_gain',
+       'minmax__capital_loss', 'relationship', 'marital_status',
+       'onehot__sex_Female', 'onehot__sex_Male',
+       'onehot__race_Amer-Indian-Eskimo', 'onehot__race_Asian-Pac-Islander',
+       'onehot__race_Black', 'onehot__race_Other', 'onehot__race_White',
+       'onehot__region_Asia', 'onehot__region_Caribbean',
+       'onehot__region_Central America', 'onehot__region_Europe',
+       'onehot__region_North America', 'onehot__region_Oceania',
+       'onehot__region_South America', 'onehot__employment_type_Full-Time',
+       'onehot__employment_type_Over-Time',
+       'onehot__employment_type_Part-Time', 'ordinal__education',
+       'ordinal__education_level_group', 'ordinal__age_group',
+       'frequency__workclass', 'frequency__occupation',
+       'frequency__native_country', 'minmax__fnlwgt', 'minmax__education_num',
+       'minmax__net_capital', 'minmax__year_of_education_remaining',
+       'minmax__age', 'reminders__work_life_balance',
+       'reminders__over_time_flag', 'reminders__is_educated_flag',
+       'reminders__is_married_flag'],
+      dtype='object')
+[ 2025-03-25 12:35:26,856 ] 509 root - INFO - Testing Data:
+   minmax__hours_per_week  minmax__capital_gain  ...  reminders__is_educated_flag reminders__is_married_flag
+0                0.551020                   0.0  ...                          1.0                        0.0
+1                0.397959                   0.0  ...                          0.0                        1.0
+2                0.500000                   0.0  ...                          0.0                        1.0
+3                0.448980                   0.0  ...                          0.0                        1.0
+
+[4 rows x 37 columns]
+[ 2025-03-25 12:35:26,856 ] 511 root - INFO - <<<<< Testing of Class: Feature Transformation Successfully Completed >>>>>

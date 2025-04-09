@@ -1,0 +1,25 @@
+[ 2025-03-25 12:15:21,207 ] 473 root - INFO - <<<<< Testing Class: Feature Transformation Started >>>>>
+[ 2025-03-25 12:15:21,340 ] 213 root - INFO - 
+        **************************************************
+        Data Transformation is Running at Serving Mode
+        **************************************************
+        
+[ 2025-03-25 12:15:21,340 ] 362 root - INFO - >>> Transforming Data Started <<<
+[ 2025-03-25 12:15:21,356 ] 133 root - INFO - Data Preparation Started
+[ 2025-03-25 12:15:21,356 ] 207 root - INFO - Data Preparation Completed
+[ 2025-03-25 12:15:21,356 ] 464 root - INFO - >>> Data Transformation Completed <<<
+[ 2025-03-25 12:15:21,373 ] 519 root - INFO - Training Data:
+   minmax__hours_per_week  minmax__capital_gain  minmax__capital_loss  ... minmax__fnlwgt minmax__education_num  minmax__age
+0                0.397959               0.02174                   0.0  ...       0.042616                   0.8      0.30137
+
+[1 rows x 19 columns]
+[ 2025-03-25 12:15:21,373 ] 520 root - INFO - Index(['minmax__hours_per_week', 'minmax__capital_gain',
+       'minmax__capital_loss', 'relationship', 'marital_status',
+       'onehot__sex_Female', 'onehot__sex_Male',
+       'onehot__race_Amer-Indian-Eskimo', 'onehot__race_Asian-Pac-Islander',
+       'onehot__race_Black', 'onehot__race_Other', 'onehot__race_White',
+       'ordinal__education', 'frequency__workclass', 'frequency__occupation',
+       'frequency__native_country', 'minmax__fnlwgt', 'minmax__education_num',
+       'minmax__age'],
+      dtype='object')
+[ 2025-03-25 12:15:21,373 ] 525 root - INFO - <<<<< Testing of Class: Feature Transformation Successfully Completed >>>>>

@@ -1,0 +1,39 @@
+[ 2025-03-25 12:28:52,491 ] 458 root - INFO - <<<<< Testing Class: Feature Transformation Started >>>>>
+[ 2025-03-25 12:28:52,603 ] 198 root - INFO - 
+        **************************************************
+        Data Transformetion is Running at Training Mode
+        **************************************************
+        
+[ 2025-03-25 12:28:52,670 ] 272 root - INFO - ***** Feature Transformation Started *****
+[ 2025-03-25 12:28:52,670 ] 279 root - INFO - >>> Fitting ColumnTransformer Started. <<<
+[ 2025-03-25 12:28:52,770 ] 335 root - INFO - >>> ColumnTransformer has been Fitted. <<<
+[ 2025-03-25 12:28:52,770 ] 347 root - INFO - >>> Transforming Data Started <<<
+[ 2025-03-25 12:28:52,819 ] 133 root - INFO - Data Preparation Started
+[ 2025-03-25 12:28:52,819 ] 192 root - INFO - Data Preparation Completed
+[ 2025-03-25 12:28:52,819 ] 449 root - INFO - >>> Data Transformation Completed <<<
+[ 2025-03-25 12:28:52,852 ] 504 root - INFO - Training Data:
+   minmax__hours_per_week  minmax__capital_gain  minmax__capital_loss  ... minmax__fnlwgt minmax__education_num  minmax__age
+0                0.346939              0.000000                   0.0  ...       0.230049              0.400000     0.082192
+1                0.316327              0.000000                   0.0  ...       0.093940              0.200000     0.424658
+2                0.448980              0.000000                   0.0  ...       0.138528              0.800000     0.260274
+3                0.397959              0.076881                   0.0  ...       0.214512              0.933333     0.315068
+
+[4 rows x 19 columns]
+[ 2025-03-25 12:28:52,852 ] 505 root - INFO - Index(['minmax__hours_per_week', 'minmax__capital_gain',
+       'minmax__capital_loss', 'relationship', 'marital_status',
+       'onehot__sex_Female', 'onehot__sex_Male',
+       'onehot__race_Amer-Indian-Eskimo', 'onehot__race_Asian-Pac-Islander',
+       'onehot__race_Black', 'onehot__race_Other', 'onehot__race_White',
+       'ordinal__education', 'frequency__workclass', 'frequency__occupation',
+       'frequency__native_country', 'minmax__fnlwgt', 'minmax__education_num',
+       'minmax__age'],
+      dtype='object')
+[ 2025-03-25 12:28:52,868 ] 508 root - INFO - Testing Data:
+   minmax__hours_per_week  minmax__capital_gain  minmax__capital_loss  ... minmax__fnlwgt minmax__education_num  minmax__age
+0                0.551020                   0.0                   0.0  ...       0.042070              0.933333     0.150685
+1                0.397959                   0.0                   0.0  ...       0.111274              0.533333     0.328767
+2                0.500000                   0.0                   0.0  ...       0.187615              0.533333     0.493151
+3                0.448980                   0.0                   0.0  ...       0.136356              0.533333     0.191781
+
+[4 rows x 19 columns]
+[ 2025-03-25 12:28:52,868 ] 510 root - INFO - <<<<< Testing of Class: Feature Transformation Successfully Completed >>>>>
