@@ -81,16 +81,33 @@ class TargetFeatureTransform(BaseEstimator, TransformerMixin):
 # Run this command to test this module: src/component/target_feature_tranformation.py
 if __name__ == '__main__':
     
+    X_train_featured = fetch_data(FILE_NAME='X_train_transformed.csv', DIRECTORY_NAME='featured')
+    X_test_featured = fetch_data(FILE_NAME='X_test_transformed.csv', DIRECTORY_NAME='featured')
     X_train = fetch_data(FILE_NAME='X_train_simple_transformed.csv', DIRECTORY_NAME='processed')
     X_test = fetch_data(FILE_NAME='X_train_simple_transformed.csv', DIRECTORY_NAME='processed')
     y = fetch_data(FILE_NAME='y_train_transformed.csv', DIRECTORY_NAME='featured')
     
     logging.info(msg=f'y type: {type(y)}')
     
-    trans = TargetFeatureTransform()
-    trans.fit(X=X_train, y=y, save=True)
-    X_train_trans = trans.trasnfrom(X=X_train)
-    X_test_trans = trans.trasnfrom(X=X_test)
     
-    logging.info(msg=f'X_train_trasnformed:\n{type(X_train_trans)}{X_train_trans[:5]}')
-    logging.info(msg=f'X_test_trasnformed:\n{type(X_test_trans)}{X_test_trans[:5]}')
+    # 1. Creating a Pickle File of a Transformed Simple Featured Set
+    # ---------------------------------------------------------------
+    # trans = TargetFeatureTransform()
+    # trans.fit(X=X_train, y=y, save=True)
+    # X_train_trans = trans.trasnfrom(X=X_train)
+    # X_test_trans = trans.trasnfrom(X=X_test)
+    
+    
+    # 2. Creating a Pickle File of a New Transformed Featured Set
+    # ------------------------------------------------------------
+    trans = TargetFeatureTransform()
+    trans.fit(X=X_train_featured, y=y, save=True)
+    X_train_trans = trans.trasnfrom(X=X_train_featured)
+    X_test_trans = trans.trasnfrom(X=X_test_featured)
+    
+    logging.info(
+        msg=f'X_train Type:{type(X_train_trans)} Shape: {X_train_trans.shape}\nSample:\n{X_train_trans[:5]}'
+        )
+    logging.info(
+        msg=f'X_test Type:{type(X_test_trans)} Shape: {X_test_trans.shape}\nSample:\n{X_test_trans[:5]}'
+        )
