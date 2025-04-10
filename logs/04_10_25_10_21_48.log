@@ -1,0 +1,43 @@
+[ 2025-04-10 10:21:58,294 ] 463 root - INFO - <<<<< Testing Class: Feature Transformation Started >>>>>
+[ 2025-04-10 10:21:59,675 ] 203 root - INFO - 
+        **************************************************
+        Data Transformetion is Running at Training Mode
+        **************************************************
+        
+[ 2025-04-10 10:22:01,222 ] 277 root - INFO - ***** Feature Transformation Started *****
+[ 2025-04-10 10:22:01,222 ] 284 root - INFO - >>> Fitting ColumnTransformer Started. <<<
+[ 2025-04-10 10:22:01,628 ] 340 root - INFO - >>> ColumnTransformer has been Fitted. <<<
+[ 2025-04-10 10:22:01,628 ] 352 root - INFO - >>> Transforming Data Started <<<
+[ 2025-04-10 10:22:01,800 ] 133 root - INFO - Data Preparation Started
+[ 2025-04-10 10:22:02,097 ] 197 root - INFO - Data Preparation Completed
+[ 2025-04-10 10:22:02,097 ] 454 root - INFO - >>> Data Transformation Completed <<<
+[ 2025-04-10 10:22:02,112 ] 522 root - INFO - Training Shape: (25637, 33)
+[ 2025-04-10 10:22:02,112 ] 523 root - INFO - Columns: Index(['hours_per_week', 'capital_gain', 'capital_loss', 'relationship',
+       'marital_status', 'sex_Male', 'race_Asian-Pac-Islander', 'race_Black',
+       'race_Other', 'race_White', 'region_Caribbean',
+       'region_Central America', 'region_Europe', 'region_North America',
+       'region_Oceania', 'region_South America', 'employment_type_Over-Time',
+       'employment_type_Part-Time', 'education', 'education_level_group',
+       'age_group', 'workclass', 'occupation', 'native_country', 'fnlwgt',
+       'education_num', 'net_capital', 'year_of_education_remaining', 'age',
+       'work_life_balance', 'over_time_flag', 'is_educated_flag',
+       'is_married_flag'],
+      dtype='object')
+[ 2025-04-10 10:22:03,425 ] 524 root - INFO - Training Data:
+   hours_per_week  capital_gain  capital_loss  ... over_time_flag is_educated_flag  is_married_flag
+0        0.346939      0.000000           0.0  ...            0.0              0.0              0.0
+1        0.316327      0.000000           0.0  ...            0.0              0.0              1.0
+2        0.448980      0.000000           0.0  ...            1.0              1.0              1.0
+3        0.397959      0.076881           0.0  ...            0.0              1.0              1.0
+
+[4 rows x 33 columns]
+[ 2025-04-10 10:22:03,425 ] 527 root - INFO - Training Shape: (4525, 33)
+[ 2025-04-10 10:22:03,506 ] 528 root - INFO - Testing Data:
+   hours_per_week  capital_gain  capital_loss  ... over_time_flag is_educated_flag  is_married_flag
+0        0.551020           0.0           0.0  ...            1.0              1.0              0.0
+1        0.397959           0.0           0.0  ...            0.0              0.0              1.0
+2        0.500000           0.0           0.0  ...            1.0              0.0              1.0
+3        0.448980           0.0           0.0  ...            1.0              0.0              1.0
+
+[4 rows x 33 columns]
+[ 2025-04-10 10:22:03,506 ] 530 root - INFO - <<<<< Testing of Class: Feature Transformation Successfully Completed >>>>>
