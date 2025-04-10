@@ -258,7 +258,7 @@ class FeatureTransformation(BaseEstimator, TransformerMixin):
             self.X_train_dropped = X.drop(columns=self.transform_features['target_features'])
         
     def fit(self,
-            type_: Optional[Literal['simple_transform', 'transfrom']] = None,
+            type_: Optional[Literal['simple_transform', 'transform']] = None,
             save: bool = False
             ):
         
@@ -339,7 +339,7 @@ class FeatureTransformation(BaseEstimator, TransformerMixin):
     def transform(
         self,
         X: Optional[pd.DataFrame] = None,
-        type_: Optional[Literal['simple_transform', 'transfrom']] = None,
+        type_: Optional[Literal['simple_transform', 'transform']] = None,
         save: bool = False,
         ) -> Tuple[pd.DataFrame, pd.DataFrame]:
         
