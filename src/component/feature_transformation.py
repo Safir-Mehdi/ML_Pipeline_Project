@@ -69,7 +69,7 @@ def fit_transformer(
         preprocessor = ColumnTransformer(
             transformers=[
                 
-                ('onehot', OneHotEncoder(), features['onehot_features']),
+                ('onehot', OneHotEncoder(drop='first'), features['onehot_features']),
                 
                 ('ordinal', OrdinalEncoder(
                     categories=list(params.values())[:i]
@@ -85,7 +85,8 @@ def fit_transformer(
                 
                 ('reminders', 'passthrough', features['remander_features'])
                 # We will use target encoder duting the training and validation process.
-            ]
+            ],
+            remainder='passthrough'
         )
         
         preprocessor.fit(X=X, y=y)
@@ -163,6 +164,8 @@ def prepare_data(
         axis=1
     )
     
+    X_train_transformed.columns = [col.split('__')[1] if '__' in col else col for col in X_train_transformed.columns]
+    
     if X_test is not None:
         
         # Converte them into a DataFrame
@@ -187,6 +190,9 @@ def prepare_data(
             ],
             axis=1
         )
+    
+        X_test_transformed.columns = [col.split('__')[1] if '__' in col else col for col in X_test_transformed.columns]
+    
     
     logging.info(msg='Data Preparation Completed')
     
@@ -461,18 +467,18 @@ if __name__ == '__main__':
     
     # ***************************************************************************************************
     
-    # Fit and Transform Data For 'Simple Featured Dataset' Using FeatureTransformer Class(For Testing Perpose)
+    # 1. Fit and Transform Data For 'Simple Featured Dataset' Using FeatureTransformer Class(For Testing Perpose)
     
     # ---------------------------------------------------
     
-    # 1. For Training
+    # a. For Training
     # transform_ = FeatureTransformation(X=income_data)
     # transform_.fit(type_='simple_transform', save=True)
     # X_train_transformed, X_test_transformed = transform_.transform(X=income_data, type_='simple_transform')
     
     # ---------------------------------------------------
     
-    # 2. For Serving
+    # b. For Serving
     # Here you write a code.
     # instance = income_data.iloc[0:1]
     
@@ -485,7 +491,7 @@ if __name__ == '__main__':
     
     #  ***************************************************************************************************
     
-    # Fit and Transform Data Featured Dataset Using FeatureTransformer Class(For Testing Perpose)
+    # 2. Fit and Transform Data Featured Dataset Using FeatureTransformer Class(For Testing Perpose)
     
     # Extract New Features & Fit Transform Them.
     extractor = FeatureExtractor()
@@ -493,28 +499,32 @@ if __name__ == '__main__':
     
     # ---------------------------------------------------
     
-    # # 1. For Training
-    # transform_ = FeatureTransformation(X=income_data)
-    # transform_.fit(type_='transform')
-    # X_train_transformed, X_test_transformed = transform_.transform(X=income_data, type_='transform')
+    # # a. For Training
+    transform_ = FeatureTransformation(X=income_data)
+    transform_.fit(type_='transform', save=True)
+    X_train_transformed, X_test_transformed = transform_.transform(X=income_data, type_='transform')
     
     # ---------------------------------------------------
     
-    # 2. For Serving
-    instance = income_data.iloc[0:1]
+    # b. For Serving
+    # instance = income_data.iloc[0:1]
     
-    file_path = r'artifacts\column_transformers\featured_transformer.pkl'
-    with open(file_path, 'rb') as file:
-        preprocessor = joblib.load(file)
+    # file_path = r'artifacts\column_transformers\featured_transformer.pkl'
+    # with open(file_path, 'rb') as file:
+    #     preprocessor = joblib.load(file)
     
-    serving_trans = FeatureTransformation(X=instance, preprocessor=preprocessor, training=False)
-    X_train_transformed, X_test_transformed = serving_trans.transform(X=instance, type_='transform')
+    # serving_trans = FeatureTransformation(X=instance, preprocessor=preprocessor, training=False)
+    # X_train_transformed, X_test_transformed = serving_trans.transform(X=instance, type_='transform')
+    
+    # ***************************************************************************************************
+    
  
-    
+    logging.info(msg=f'Training Shape: {X_train_transformed.shape}')
+    logging.info(f'Columns: {X_train_transformed.columns}')
     logging.info(f'Training Data:\n{X_train_transformed.head(4)}')
-    logging.info(f'{X_train_transformed.columns}')
     
     if X_test_transformed is not None:
+        logging.info(msg=f'Training Shape: {X_test_transformed.shape}')
         logging.info(f'Testing Data:\n{X_test_transformed.head(4)}')
     
     logging.info(msg='<<<<< Testing of Class: Feature Transformation Successfully Completed >>>>>')
