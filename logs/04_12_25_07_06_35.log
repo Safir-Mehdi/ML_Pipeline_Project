@@ -1,0 +1,33 @@
+[ 2025-04-12 07:06:42,768 ] 15 root - INFO - <<<<Serving Pipeline has been Started>>>>
+[ 2025-04-12 07:06:53,923 ] 203 root - INFO - 
+        **************************************************
+        Data Transformation is Running at Serving Mode
+        **************************************************
+        
+[ 2025-04-12 07:06:53,923 ] 352 root - INFO - >>> Transforming Data Started <<<
+[ 2025-04-12 07:06:53,938 ] 133 root - INFO - Data Preparation Started
+[ 2025-04-12 07:06:53,954 ] 197 root - INFO - Data Preparation Completed
+[ 2025-04-12 07:06:53,954 ] 454 root - INFO - >>> Data Transformation Completed <<<
+[ 2025-04-12 07:06:53,954 ] 25 root - INFO - <<<<Target Transformation has been Started>>>>
+[ 2025-04-12 07:06:53,954 ] 42 root - INFO - Transformation is in Surving Mode
+[ 2025-04-12 07:06:54,032 ] 109 root - INFO - Transformation is Completed
+[ 2025-04-12 07:06:54,032 ] 203 root - INFO - 
+        **************************************************
+        Data Transformation is Running at Serving Mode
+        **************************************************
+        
+[ 2025-04-12 07:06:54,032 ] 352 root - INFO - >>> Transforming Data Started <<<
+[ 2025-04-12 07:06:54,063 ] 133 root - INFO - Data Preparation Started
+[ 2025-04-12 07:06:54,063 ] 197 root - INFO - Data Preparation Completed
+[ 2025-04-12 07:06:54,063 ] 454 root - INFO - >>> Data Transformation Completed <<<
+[ 2025-04-12 07:06:54,063 ] 25 root - INFO - <<<<Target Transformation has been Started>>>>
+[ 2025-04-12 07:06:54,063 ] 42 root - INFO - Transformation is in Surving Mode
+[ 2025-04-12 07:06:54,188 ] 109 root - INFO - Transformation is Completed
+[ 2025-04-12 07:06:54,204 ] 134 root - INFO - Priedicting on Given Sample
+[ 2025-04-12 07:06:54,266 ] 139 root - INFO - Prediction is Completed
+[ 2025-04-12 07:06:54,266 ] 152 root - INFO - <<<<Serving Pipeline has been Completed>>>>
+[ 2025-04-12 07:06:54,438 ] 178 root - INFO - Imputed Set
+   age  fnlwgt  education-num  capital-gain  capital-loss  ...   race   sex native-country income pred_income
+7   52  209642              9             0             0  ...  White  Male  United-States   >50K        >50K
+
+[1 rows x 16 columns]

@@ -1,0 +1,25 @@
+[ 2025-04-10 17:53:09,016 ] 127 root - INFO - y type: <class 'pandas.core.frame.DataFrame'>
+[ 2025-04-10 17:53:09,017 ] 25 root - INFO - <<<<Target Transformation has been Started>>>>
+[ 2025-04-10 17:53:09,017 ] 42 root - INFO - Transformation is in Surving Mode
+[ 2025-04-10 17:53:09,039 ] 109 root - INFO - Transformation is Completed
+[ 2025-04-10 17:53:09,046 ] 109 root - INFO - Transformation is Completed
+[ 2025-04-10 17:53:09,084 ] 163 root - INFO - X_train Type:<class 'pandas.core.frame.DataFrame'> Shape: (27676, 33)
+Sample:
+   target_encoder__relationship  target_encoder__marital_status  ...  remainder__is_educated_flag  remainder__is_married_flag
+0                      0.062543                        0.055556  ...                          0.0                         0.0
+1                      0.101367                        0.103577  ...                          1.0                         0.0
+2                      0.013432                        0.103577  ...                          0.0                         0.0
+3                      0.446235                        0.445735  ...                          0.0                         1.0
+4                      0.446235                        0.445735  ...                          0.0                         1.0
+
+[5 rows x 33 columns]
+[ 2025-04-10 17:53:09,115 ] 166 root - INFO - X_test Type:<class 'pandas.core.frame.DataFrame'> Shape: (4885, 33)
+Sample:
+   target_encoder__relationship  target_encoder__marital_status  ...  remainder__is_educated_flag  remainder__is_married_flag
+0                      0.101367                        0.103577  ...                          0.0                         0.0
+1                      0.483798                        0.445735  ...                          0.0                         1.0
+2                      0.446235                        0.445735  ...                          1.0                         1.0
+3                      0.101367                        0.045609  ...                          1.0                         0.0
+4                      0.101367                        0.103577  ...                          0.0                         0.0
+
+[5 rows x 33 columns]
