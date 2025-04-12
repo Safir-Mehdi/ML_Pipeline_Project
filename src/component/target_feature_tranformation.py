@@ -104,11 +104,15 @@ class TargetFeatureTransform(BaseEstimator, TransformerMixin):
         if not isinstance(X, pd.DataFrame):
             raise TypeError('X must be Pandas DataFrame.')
         
-        trans = self.trans.transform(X=X)
+        X_trans = self.trans.transform(X=X)
         
         logging.info(msg='Transformation is Completed')
         
-        return trans
+        feature_names = self.trans.get_feature_names_out()
+        X_trans = pd.DataFrame(X_trans, columns=feature_names)
+        X_trans.columns = [col.split('__')[1] if '__' in col else col for col in X_trans.columns]
+        
+        return X_trans
 
 
 
@@ -143,16 +147,16 @@ if __name__ == '__main__':
 
     # 1. Fitting & save a Target Encoder Using TargetFeatureTransform() to New Transformed Featured Set
     # -------------------------------------------------------------------------------------------------
-    trans = TargetFeatureTransform(type_='transform')
-    trans.fit(X=X_train_featured, y=y, save=True)
-    X_train_trans = trans.transform(X=X_train_featured)
-    X_test_trans = trans.transform(X=X_test_featured)
+    # trans = TargetFeatureTransform(type_='transform')
+    # trans.fit(X=X_train_featured, y=y, save=True)
+    # X_train_trans = trans.transform(X=X_train_featured)
+    # X_test_trans = trans.transform(X=X_test_featured)
     
     # 2. Now Load & Test the Transformer
     # ----------------------------------
-    # trans = TargetFeatureTransform(type_='transform', training=False)
-    # X_train_trans = trans.transform(X=X_train_featured)
-    # X_test_trans = trans.transform(X=X_test_featured)
+    trans = TargetFeatureTransform(type_='transform', training=False)
+    X_train_trans = trans.transform(X=X_train_featured)
+    X_test_trans = trans.transform(X=X_test_featured)
     
 # ********************************************************************************************************
 
