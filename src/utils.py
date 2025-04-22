@@ -8,6 +8,7 @@ from src.exception import CustomException
 from src.logger import logging
 from typing import Union, Optional
 from matplotlib import pyplot as plt
+from models.pydantic_model import CensusData
 
     
 def plot_categorical_features(
@@ -153,3 +154,8 @@ def transforme_DataFrame(transformed, preprocessor) -> Union[pd.DataFrame, pd.Se
     
     elif hasattr(preprocessor, 'classes_'):
         return pd.Series(transformed)
+    
+def create_dataframe(data: CensusData) -> pd.DataFrame:
+    X = pd.DataFrame([data.model_dump()])
+    X.columns = [col.replace('_','-') for col in X.columns]
+    return X

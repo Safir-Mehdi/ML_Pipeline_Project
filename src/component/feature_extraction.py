@@ -16,14 +16,14 @@ class FeatureExtractor(BaseEstimator, TransformerMixin):
         # 1. Extract Age Groups from -> Age
         X['age_group'] = pd.cut(
             x=X['age'],
-            bins=[0, 18, 35, 55, X['age'].max() + 20],
+            bins=[0, 18, 35, 55, 100],
             labels=['Childern', 'Young Adults', 'Middle Aged', 'Seniors']
             ).astype('object')
 
         # 2. Obtain Employment Type from -> Hours Per Week
         X['employment_type'] = pd.cut(
             x=X['hours_per_week'],
-            bins=[0, 20, 40, X['hours_per_week'].max() + 1],
+            bins=[0, 20, 40, 91],
             labels=['Part-Time', 'Full-Time', 'Over-Time']
             ).astype('object')
 

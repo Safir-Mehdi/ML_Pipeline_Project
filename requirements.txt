@@ -12,4 +12,5 @@ requests
 bs4
 xgboost
 plotly
+pydantic
 -e .

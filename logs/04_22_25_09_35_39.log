@@ -1,0 +1,67 @@
+[ 2025-04-22 09:35:40,022 ] 97 werkzeug - WARNING -  * Debugger is active!
+[ 2025-04-22 09:35:40,073 ] 97 werkzeug - INFO -  * Debugger PIN: 529-349-880
+[ 2025-04-22 09:36:13,054 ] 97 werkzeug - INFO - 127.0.0.1 - - [22/Apr/2025 09:36:13] "GET / HTTP/1.1" 200 -
+[ 2025-04-22 09:36:36,659 ] 15 root - INFO - <<<<Serving Pipeline has been Started>>>>
+[ 2025-04-22 09:36:48,303 ] 203 root - INFO - 
+        **************************************************
+        Data Transformation is Running at Serving Mode
+        **************************************************
+        
+[ 2025-04-22 09:36:48,305 ] 352 root - INFO - >>> Transforming Data Started <<<
+[ 2025-04-22 09:36:48,364 ] 133 root - INFO - Data Preparation Started
+[ 2025-04-22 09:36:48,367 ] 197 root - INFO - Data Preparation Completed
+[ 2025-04-22 09:36:48,367 ] 454 root - INFO - >>> Data Transformation Completed <<<
+[ 2025-04-22 09:36:48,367 ] 25 root - INFO - <<<<Target Transformation has been Started>>>>
+[ 2025-04-22 09:36:48,368 ] 42 root - INFO - Transformation is in Surving Mode
+[ 2025-04-22 09:36:48,377 ] 109 root - INFO - Transformation is Completed
+[ 2025-04-22 09:36:48,378 ] 203 root - INFO - 
+        **************************************************
+        Data Transformation is Running at Serving Mode
+        **************************************************
+        
+[ 2025-04-22 09:36:48,379 ] 352 root - INFO - >>> Transforming Data Started <<<
+[ 2025-04-22 09:36:48,388 ] 133 root - INFO - Data Preparation Started
+[ 2025-04-22 09:36:48,390 ] 197 root - INFO - Data Preparation Completed
+[ 2025-04-22 09:36:48,391 ] 454 root - INFO - >>> Data Transformation Completed <<<
+[ 2025-04-22 09:36:48,391 ] 25 root - INFO - <<<<Target Transformation has been Started>>>>
+[ 2025-04-22 09:36:48,391 ] 42 root - INFO - Transformation is in Surving Mode
+[ 2025-04-22 09:36:48,410 ] 109 root - INFO - Transformation is Completed
+[ 2025-04-22 09:36:48,415 ] 134 root - INFO - Priedicting on Given Sample
+[ 2025-04-22 09:36:48,466 ] 139 root - INFO - Prediction is Completed
+[ 2025-04-22 09:36:48,467 ] 152 root - INFO - <<<<Serving Pipeline has been Completed>>>>
+[ 2025-04-22 09:36:48,597 ] 97 werkzeug - INFO - 127.0.0.1 - - [22/Apr/2025 09:36:48] "POST / HTTP/1.1" 200 -
+[ 2025-04-22 09:42:58,840 ] 97 werkzeug - INFO - 127.0.0.1 - - [22/Apr/2025 09:42:58] "GET / HTTP/1.1" 200 -
+[ 2025-04-22 09:44:53,207 ] 15 root - INFO - <<<<Serving Pipeline has been Started>>>>
+[ 2025-04-22 09:44:57,914 ] 203 root - INFO - 
+        **************************************************
+        Data Transformation is Running at Serving Mode
+        **************************************************
+        
+[ 2025-04-22 09:44:57,917 ] 352 root - INFO - >>> Transforming Data Started <<<
+[ 2025-04-22 09:44:57,940 ] 133 root - INFO - Data Preparation Started
+[ 2025-04-22 09:44:57,944 ] 197 root - INFO - Data Preparation Completed
+[ 2025-04-22 09:44:57,944 ] 454 root - INFO - >>> Data Transformation Completed <<<
+[ 2025-04-22 09:44:57,944 ] 25 root - INFO - <<<<Target Transformation has been Started>>>>
+[ 2025-04-22 09:44:57,945 ] 42 root - INFO - Transformation is in Surving Mode
+[ 2025-04-22 09:44:57,980 ] 109 root - INFO - Transformation is Completed
+[ 2025-04-22 09:44:57,982 ] 203 root - INFO - 
+        **************************************************
+        Data Transformation is Running at Serving Mode
+        **************************************************
+        
+[ 2025-04-22 09:44:57,984 ] 352 root - INFO - >>> Transforming Data Started <<<
+[ 2025-04-22 09:44:58,004 ] 133 root - INFO - Data Preparation Started
+[ 2025-04-22 09:44:58,008 ] 197 root - INFO - Data Preparation Completed
+[ 2025-04-22 09:44:58,008 ] 454 root - INFO - >>> Data Transformation Completed <<<
+[ 2025-04-22 09:44:58,009 ] 25 root - INFO - <<<<Target Transformation has been Started>>>>
+[ 2025-04-22 09:44:58,009 ] 42 root - INFO - Transformation is in Surving Mode
+[ 2025-04-22 09:44:58,050 ] 109 root - INFO - Transformation is Completed
+[ 2025-04-22 09:44:58,060 ] 134 root - INFO - Priedicting on Given Sample
+[ 2025-04-22 09:44:58,130 ] 139 root - INFO - Prediction is Completed
+[ 2025-04-22 09:44:58,132 ] 152 root - INFO - <<<<Serving Pipeline has been Completed>>>>
+[ 2025-04-22 09:44:58,341 ] 97 werkzeug - INFO - 127.0.0.1 - - [22/Apr/2025 09:44:58] "POST / HTTP/1.1" 200 -
+[ 2025-04-22 09:45:17,966 ] 97 werkzeug - INFO - 127.0.0.1 - - [22/Apr/2025 09:45:17] "GET / HTTP/1.1" 200 -
+[ 2025-04-22 09:48:52,004 ] 97 werkzeug - INFO - 127.0.0.1 - - [22/Apr/2025 09:48:52] "GET / HTTP/1.1" 200 -
+[ 2025-04-22 09:49:20,600 ] 97 werkzeug - INFO - 127.0.0.1 - - [22/Apr/2025 09:49:20] "GET / HTTP/1.1" 200 -
+[ 2025-04-22 09:49:46,704 ] 97 werkzeug - INFO - 127.0.0.1 - - [22/Apr/2025 09:49:46] "GET / HTTP/1.1" 200 -
+[ 2025-04-22 09:51:18,158 ] 97 werkzeug - INFO - 127.0.0.1 - - [22/Apr/2025 09:51:18] "GET / HTTP/1.1" 200 -
